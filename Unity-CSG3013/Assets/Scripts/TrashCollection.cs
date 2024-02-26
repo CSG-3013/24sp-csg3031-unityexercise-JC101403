@@ -6,7 +6,7 @@ public class TrashCollection : MonoBehaviour
 {
     int trashCollected;
     public bool openGate = false;
-    // Start is called before the first frame update
+
     void Start()
     {
         trashCollected = 0;
@@ -15,20 +15,48 @@ public class TrashCollection : MonoBehaviour
 
     void update()
     {
+        
+        
+    }
+
+    public void FixedUpdate()
+    {
         if (trashCollected.Equals(3))
         {
             openGate = true;
+        }
+        else
+        {
+            openGate = false;
+        }
+
+        if (Input.GetKeyUp("o") && openGate == false)
+        {
+            trashCollected = 3;
+            Debug.Log(trashCollected);
+        }
+        else if (Input.GetKeyUp("o") && openGate == true)
+        {
+            trashCollected = 0;
+            Debug.Log(trashCollected);
         }
     }
 
     void onTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "SM_Prop_TrashBag_01")
+        Debug.Log("hit");
+        if (other.gameObject.CompareTag("Trash"))
         {
             trashCollected++;
             Destroy(other.gameObject);
             Debug.Log(trashCollected);
 
         }
+    }
+
+    void onCollisionEnter(Collision other)
+    {
+        Debug.Log("hit");
+            Destroy(other.gameObject);
     }
 }
