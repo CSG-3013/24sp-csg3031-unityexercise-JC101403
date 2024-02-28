@@ -15,7 +15,7 @@ public class TrashCollection : MonoBehaviour
 
     void update()
     {
-        
+
         
     }
 
@@ -30,6 +30,11 @@ public class TrashCollection : MonoBehaviour
             openGate = false;
         }
 
+        Gate();
+    }
+
+    public void Gate()
+    {
         if (Input.GetKeyUp("o") && openGate == false)
         {
             trashCollected = 3;
@@ -42,10 +47,10 @@ public class TrashCollection : MonoBehaviour
         }
     }
 
-    void onTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         Debug.Log("hit");
-        if (other.gameObject.CompareTag("Trash"))
+        if (other.CompareTag("Bag"))
         {
             trashCollected++;
             Destroy(other.gameObject);
@@ -54,9 +59,9 @@ public class TrashCollection : MonoBehaviour
         }
     }
 
-    void onCollisionEnter(Collision other)
+    /*void onCollisionEnter(Collision other)
     {
         Debug.Log("hit");
             Destroy(other.gameObject);
-    }
+    }*/
 }
