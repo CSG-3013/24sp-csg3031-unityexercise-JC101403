@@ -6,11 +6,15 @@ public class TrashCollection : MonoBehaviour
 {
     int trashCollected;
     public bool openGate = false;
+    [SerializeField]AudioSource audio;
+    [SerializeField]AudioClip pickUp;
 
     void Start()
     {
         trashCollected = 0;
         openGate = false;
+        audio = GetComponent<AudioSource>();
+
     }
 
     void update()
@@ -49,19 +53,14 @@ public class TrashCollection : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("hit");
         if (other.CompareTag("Bag"))
         {
             trashCollected++;
             Destroy(other.gameObject);
             Debug.Log(trashCollected);
+            audio.clip = pickUp;
+            audio.Play();
 
         }
     }
-
-    /*void onCollisionEnter(Collision other)
-    {
-        Debug.Log("hit");
-            Destroy(other.gameObject);
-    }*/
 }

@@ -5,7 +5,9 @@ using UnityEngine;
 public class ObjectiveComplete : MonoBehaviour
 {
     [SerializeField] TrashCollection TC;
+    [SerializeField] CollisionSensors sensor;
     [SerializeField] Animator gate;
+    [SerializeField] Animator gate2;
     //[SerializeField] AudioClip gateScratch;
     [SerializeField] AudioSource audio;
 
@@ -25,18 +27,31 @@ public class ObjectiveComplete : MonoBehaviour
     {
         if (TC.openGate.Equals(true))
         {
-            Debug.Log("Gate is open");
+            //Debug.Log("Gate is open");
             gate.SetBool("isOpen",true);
             
             
         }
         else
         {
-            Debug.Log("Gate is closed");
+            //Debug.Log("Gate is closed");
             gate.SetBool("isOpen", false);
 
         }
 
+        if (sensor.openGate.Equals(true))
+        {
+            //Debug.Log("Gate is open");
+            gate2.SetBool("isOpen", true);
+
+
+        }
+        else
+        {
+            //Debug.Log("Gate is closed");
+            gate2.SetBool("isOpen", false);
+
+        }
     }
 
     public void PlayGateScratch()

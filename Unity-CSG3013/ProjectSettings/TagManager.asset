@@ -8,6 +8,12 @@ TagManager:
   - Trash
   - Bag
   - Cube
+  - Key
+  - Red
+  - Green
+  - Blue
+  - Lock
+  - Idol
   layers:
   - Default
   - TransparentFX
